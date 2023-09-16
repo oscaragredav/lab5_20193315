@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Agregar nuevo viaje</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo viaje</h1>
+        <form method="post" th:action="@{/viajes/guardarViajes}" class="mt-2">
+            <div class="mb-3">
+                <label for="idViajes" class="form-label">Ingresar código de viaje</label>
+                <input name="idViajes" type="number" class="form-control" id="idViajes">
+            </div>
+            <div class="mb-3">
+                <label for="punto_recojo" class="form-label">Punto de recojo</label>
+                <input name="punto_recojo" type="text" class="form-control" id="punto_recojo">
+            </div>
+            <div class="mb-3">
+                <label for="cant_personas" class="form-label">Cant personas</label>
+                <input name="cant_personas" type="text" class="form-control" id="cant_personas">
+            </div>
+            <div class="mb-3">
+                <label for="cant_perros" class="form-label">Cant perros</label>
+                <input name="cant_perros" type="text" class="form-control" id="cant_perros">
+            </div>
+            <div class="input-group mb-3">
+                <label for="persona">Seleccionar persona</label>
+                <div class="col-12">
+                    <select name="persona" id="persona" class="form-control">
+                        <option th:each="persona: ${listaPersona}"
+                                th:text="${persona.nombre}" th:value="${persona.idPersona}">Persona</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="lugares">Seleccionar lugares</label>
+                <div class="col-12">
+                    <select name="lugares" id="lugares" class="form-control">
+                        <option th:each="lugares: ${listaLugares}"
+                                th:text="${lugares.nombreLugar}" th:value="${lugares.idLugares}">Sitio de Tipo</option>
+                    </select>
+                </div>
+            </div>
+            <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
